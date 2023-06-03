@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Commerce9_Pos::css/pos.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="c9-pos"/>
+        <referenceContainer name="header.container" remove="true" />
+        <referenceContainer name="footer" remove="true" />
+        <referenceBlock name="navigation.sections" remove="true" />
+    </body>
+</page>

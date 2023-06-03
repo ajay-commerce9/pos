@@ -1,0 +1,49 @@
+
+<ul>
+    <span class="cat-1">category 1</span>
+</ul>
+
+<script>
+    require([
+        'jquery',
+        'mage/url',
+        'loader',
+        'mage/cookies',
+        'domReady!'
+    ], function ($, urlBuilder) {
+
+        $('.cat-1').click(function () {
+            var body = $('body');
+            body.loader('show');
+            var productListUrl = urlBuilder.build('c9pos/pos/productlist');
+            var wait = 1500;
+            var search_data ={};
+            search_data.deliveryLocation = deliveryLocation;
+            search_data.isEncoded = true;
+            setTimeout(function () {
+                $.ajax({
+                    url: productListUrl,
+                    data: {
+                        cat_id:1
+                    },
+                    dataType: 'json',
+                    type: "POST",
+                    showLoader: false
+                }).done(function (data) {
+                    body.loader('hide');
+                    if(data.result == true){
+                        let productgrid =  $(data).find('.products-grid').html();
+                        $('.product-list').html(productgrid);
+
+                    }else{
+                        $(".response_comment").html("No shops are available for the pincode");
+                    }
+
+                });
+
+            }, wait);
+        });
+
+
+    });
+</script>
